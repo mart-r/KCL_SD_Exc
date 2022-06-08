@@ -36,7 +36,7 @@ def extract_from_file_contents(contents: str, medicines: Dict[str, int] = DEFINE
         medicines (Dict[str, int], optional): The mapping of medicine names to their IDs. Defaults to DEFINED_MEDICINES.
 
     Returns:
-        List[Tuple[int, str]]: _description_
+        List[Tuple[int, str]]: The list of medicine IDs and dosages
     """
     extracted_medicines = []
     for line in contents.split('\n'):
@@ -110,7 +110,7 @@ def extract_medicines_from_file(file_name: str, medicines: Dict[str, int] = DEFI
         medicines (Dict[str, int], optional): The mapping of medicine names to their IDs. Defaults to DEFINED_MEDICINES.
 
     Returns:
-        List[Tuple[int, str]]: _description_
+        List[Tuple[int, str]]: The list of medicine IDs and dosages
     """
     with open(file_name) as f:
         contents = f.read()
