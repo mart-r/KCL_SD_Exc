@@ -98,16 +98,33 @@ def get_medicine_and_dosage(line: str, medicines: Dict[str, int], allow_empty_do
     return None, None
 
 
+def extract_medicines_from_file(file_name: str, medicines: Dict[str, int] = DEFINED_MEDICINES) -> List[Tuple[int, str]]:
+    """Extract medicines from a file.
+
+    This method extract the contents from the file and uses the
+    :func:`~extractor.extract_from_file_contents` method for to extract the medicines.
+    See :func:`~extractor.extract_from_file_contents` for further details.
+
+    Args:
+        file_name (str): The file name to read the contents from
+        medicines (Dict[str, int], optional): The mapping of medicine names to their IDs. Defaults to DEFINED_MEDICINES.
+
+    Returns:
+        List[Tuple[int, str]]: _description_
+    """
+    with open(file_name) as f:
+        contents = f.read()
+        f.close()
+    return extract_from_file_contents(contents, medicines=medicines)
+
+
 def extract_and_print_defaults_from_file(file_name: str) -> None:
     """Extract and print pre-defined (default) medicines from file.
 
     Args:
         file_name (str): File to extraf medicines from
     """
-    with open(file_name) as f:
-        contents = f.read()
-        f.close()
-    medicines = extract_from_file_contents(contents)
+    medicines = extract_medicines_from_file(file_name)
     print(medicines)
 
 
